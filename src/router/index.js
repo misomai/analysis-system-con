@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Input from '../views/Input.vue'
 import ChartHome from '../views/ChartHome'
-import JapanMap from '../views/JapanMap.vue'
 import AdView from '../views/AdView.vue'
 import CsvImport from '../components/CsvImport'
 //import CsvImport from '../components//CsvImport.vue'
@@ -14,11 +13,6 @@ const routes = [
     path: '/',
     name: 'Main',
     component: Main
-  },
-  {
-    path: '/Map',
-    name: 'JapanMap',
-    component: JapanMap
   },
   {
     path: '/Chart',
