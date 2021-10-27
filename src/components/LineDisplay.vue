@@ -3,14 +3,14 @@
     <v-combobox
       v-model="selectProduct"
       :items="this.$store.state.products"
-      label="年度"
+      label="商品"
       solo
       dense
     ></v-combobox>
     <v-combobox
       v-model="selectItem"
       :items="items"
-      label="年度"
+      label="項目"
       solo
       dense
     ></v-combobox>
@@ -24,7 +24,7 @@
     <LineChart
       :chart-data="chartdata"
       :options="options"
-      style="position: relative; height:40vh"
+      style="position: relative; height: 40vh"
     />
   </div>
 </template>
@@ -41,11 +41,21 @@ export default {
   data() {
     return {
       selectYear: ["2021"],
-      years: [ "2023","2022", "2021"],
-      selectProduct: ["a"],
-      products: [ "a","aa", "aaa"],
-      selectItem: ["z"],
-      items: [ "z","z", "z"],
+      years: ["2023", "2022", "2021"],
+      selectProduct: [""],
+      products: [""],
+      selectItem: ["売上"],
+      items: [
+        "売上",
+        "売上件数",
+        "アクセス人数",
+        "ユニークユーザー数",
+        "転換率",
+        "客単価",
+        "レビュー評価",
+        "レビュー数",
+        "離脱率",
+      ],
       options: {
         responsive: true,
         maintainAspectRatio: false,
@@ -53,9 +63,17 @@ export default {
     };
   },
   watch: {
-    select: function (val, oldVal) {
+    selectProduct: function (val, oldVal) {
+      console.log(val + oldVal);
+      this.$store.state.selectProduct = val;
+    },
+    selectYear: function (val, oldVal) {
       console.log(val + oldVal);
       this.$store.state.selectYear = val;
+    },
+    selectItem: function (val, oldVal) {
+      console.log(val + oldVal);
+      this.$store.state.selectItem = val;
     },
   },
   computed: {
@@ -78,10 +96,10 @@ export default {
         ],
         datasets: [
           {
-            label: "月別販売件数",
-            data: this.$store.getters.getTotalSalesCount,
-            pointBackgroundColor: "rgba(0, 0, 0, 0.0)",
-            pointBorderColor: "rgba(0, 0, 0, 0.0)",
+            label: this.selectItem,
+            data: this.$store.getters.getGraphData,
+            pointBackgroundColor: "white", // 点の塗りつぶしの色
+            pointBorderColor: "#249EBF", // 点の境界線の色
             borderColor: "rgba(255, 150, 150, 0.8)",
             fill: false,
             type: "line",
