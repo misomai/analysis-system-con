@@ -7,19 +7,7 @@
             @click="changeTab('1')"
             v-bind:class="{ active: isActive === '1' }"
           >
-            いろいろてすと
-          </li>
-          <li
-            @click="changeTab('2')"
-            v-bind:class="{ active: isActive === '2' }"
-          >
-            販売店別割合
-          </li>
-          <li
-            @click="changeTab('3')"
-            v-bind:class="{ active: isActive === '3' }"
-          >
-            都道府県別割合
+            棒グラフ
           </li>
         </ul>
       </div>
