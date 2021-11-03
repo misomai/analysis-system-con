@@ -13,6 +13,7 @@ export default new Vuex.Store({
     ],
     selectYear: '2021',
     selectProduct: '',
+    selectProductName: '',
     selectItem: '',
     totalSaleCount: [
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0

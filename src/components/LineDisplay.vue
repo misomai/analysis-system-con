@@ -7,17 +7,11 @@
       solo
       dense
     ></v-combobox>
+    <v-text-field label="商品名" disabled v-model="this.$store.state.selectProductName"></v-text-field>
     <v-combobox
       v-model="selectItem"
       :items="items"
       label="項目"
-      solo
-      dense
-    ></v-combobox>
-    <v-combobox
-      v-model="selectYear"
-      :items="years"
-      label="年度"
       solo
       dense
     ></v-combobox>
@@ -26,6 +20,13 @@
       :options="options"
       style="position: relative; height: 40vh"
     />
+    <v-combobox
+      v-model="selectYear"
+      :items="years"
+      label="年度"
+      solo
+      dense
+    ></v-combobox>
   </div>
 </template>
 
@@ -66,6 +67,9 @@ export default {
     selectProduct: function (val, oldVal) {
       console.log(val + oldVal);
       this.$store.state.selectProduct = val;
+      var hoge = this.$store.state.rows.find(element => element.productId == val);
+      
+      this.$store.state.selectProductName = hoge.name;
     },
     selectYear: function (val, oldVal) {
       console.log(val + oldVal);
