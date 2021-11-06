@@ -100,6 +100,9 @@ export default {
         {
           label: "商品名",
           field: "name",
+          filterOptions: {
+            enabled: true, // enable filter for this column
+          },
         },
         {
           label: "商品管理番号",
