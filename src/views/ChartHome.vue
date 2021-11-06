@@ -7,7 +7,19 @@
             @click="changeTab('1')"
             v-bind:class="{ active: isActive === '1' }"
           >
-            棒グラフ
+            標準折れ線グラフ
+          </li>
+          <li
+            @click="changeTab('2')"
+            v-bind:class="{ active: isActive === '2' }"
+          >
+            項目ごと比較
+          </li>
+          <li
+            @click="changeTab('3')"
+            v-bind:class="{ active: isActive === '3' }"
+          >
+            商品ごと比較
           </li>
         </ul>
       </div>
@@ -16,8 +28,8 @@
       <div class="article" >
         <!--タブで入れ替えたいコンポーネントの配置-->
         <LineDisplay v-show="isActive === '1'" class="item"></LineDisplay>
-        <PieDisplay v-show="isActive === '2'" class="item"></PieDisplay>
-        <BarDisplay v-show="isActive === '3'" class="item"></BarDisplay>
+        <ItemCompareLineDisplay v-show="isActive === '2'" class="item"></ItemCompareLineDisplay>
+        <ProductCompareLineDisplay v-show="isActive === '3'" class="item"></ProductCompareLineDisplay>
         <!-- <trend-timeline v-show="isActive === '2'" class="item"></trend-timeline>
         <trend-item v-show="isActive === '3'" class="item"></trend-item> -->
       </div>
@@ -54,14 +66,14 @@
 
 <script>
 import LineDisplay from "@/components/LineDisplay.vue";
-import BarDisplay from "@/components/BarDisplay.vue";
-import PieDisplay from "@/components/PieDisplay.vue";
+import ItemCompareLineDisplay from "@/components/ItemCompareLineDisplay.vue";
+import ProductCompareLineDisplay from "@/components/ProductCompareLineDisplay.vue";
 
 export default {
   components: {
     LineDisplay,
-    BarDisplay,
-    PieDisplay,
+    ItemCompareLineDisplay,
+    ProductCompareLineDisplay,
   },
   data() {
     return {

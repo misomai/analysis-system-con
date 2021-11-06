@@ -6,8 +6,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn text to="/">Home</v-btn>
-        <v-btn text to="/Import">販売データCSV入力</v-btn>
+        <v-btn text to="/">販売データCSV入力</v-btn>
         <v-btn text to="/Chart">グラフ</v-btn>
       </v-toolbar-items>
     </v-app-bar>

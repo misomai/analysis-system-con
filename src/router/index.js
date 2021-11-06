@@ -1,18 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Main from '../views/Main.vue'
-import Input from '../views/Input.vue'
 import ChartHome from '../views/ChartHome'
-import AdView from '../views/AdView.vue'
-import CsvImport from '../components/CsvImport'
-//import CsvImport from '../components//CsvImport.vue'
+import Import from '../components/CsvImport.vue'
+import ItemCompare from '../components/ItemCompareLineDisplay.vue'
+import ProductCompare from '../components/ProductCompareLineDisplay.vue'
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Main',
-    component: Main
+    name: 'Import',
+    component: Import
   },
   {
     path: '/Chart',
@@ -20,20 +18,15 @@ const routes = [
     component: ChartHome
   },
   {
-    path: '/Input',
-    name: 'Input',
-    component: Input
+    path: '/ItemCompare',
+    name: 'ItemCompare',
+    component: ItemCompare
   },
   {
-    path: '/Import',
-    name: 'Import',
-    component: CsvImport
+    path: '/ProductCompare',
+    name: 'ProductCompare',
+    component: ProductCompare
   },
-  {
-    path: '/Ad',
-    name: 'Ad',
-    component: AdView
-  }
 ]
 
 const router = new VueRouter({
