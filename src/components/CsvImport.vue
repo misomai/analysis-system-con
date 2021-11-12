@@ -199,10 +199,11 @@ export default {
       };
     },
     onCellClick(params) {
-      var hoge = params.row;
-      console.log(hoge);
       this.$store.state.selectProduct = params.row.productId;
       this.$store.state.selectItem = params.column.label;
+      var hoge = this.$store.state.rows.find(element => element.productId == this.$store.state.selectProduct);
+      console.log(hoge);
+      this.$store.state.selectProductName = this.$store.state.rows.find(element => element.productId == this.$store.state.selectProduct).name;
       this.$router.push('/Chart');
     },
   },

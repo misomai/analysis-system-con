@@ -66,9 +66,8 @@ export default {
     selectProduct: function (val, oldVal) {
       console.log(val + oldVal);
       this.$store.state.selectProduct = val;
-      var hoge = this.$store.state.rows.find(element => element.productId == val);
       
-      this.$store.state.selectProductName = hoge.name;
+      this.$store.state.selectProductName = this.$store.state.rows.find(element => element.productId == val).name;
     },
     selectYear: function (val, oldVal) {
       console.log(val + oldVal);
