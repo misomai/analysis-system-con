@@ -21,6 +21,7 @@
               :rows="this.$store.getters.getRows"
               :pagination-options="{ enabled: true, perPage: 30 }"
               styleClass="vgt-table condensed"
+              @on-cell-click="onCellClick"
             />
             <!-- condensedってなに？ -->
           </div>
@@ -196,6 +197,13 @@ export default {
         });
         this.$store.commit("setRows", rows);
       };
+    },
+    onCellClick(params) {
+      var hoge = params.row;
+      console.log(hoge);
+      this.$store.state.selectProduct = params.row.productId;
+      this.$store.state.selectItem = params.column.label;
+      this.$router.push('/Chart');
     },
   },
 };

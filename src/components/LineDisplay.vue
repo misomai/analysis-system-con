@@ -32,7 +32,6 @@
 
 <script>
 import LineChart from "@/components/LineChart.vue";
-import { mapGetters } from "vuex";
 
 export default {
   name: "LineDisplay",
@@ -43,9 +42,9 @@ export default {
     return {
       selectYear: ["2021"],
       years: ["2023", "2022", "2021"],
-      selectProduct: [""],
+      selectProduct: this.$store.state.selectProduct,
       products: [""],
-      selectItem: ["売上"],
+      selectItem: this.$store.state.selectItem,
       items: [
         "売上",
         "売上件数",
@@ -81,7 +80,6 @@ export default {
     },
   },
   computed: {
-    ...mapGetters({ salesCount: "getSalesCount" }),
     chartdata() {
       return {
         labels: [
