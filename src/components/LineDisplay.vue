@@ -21,6 +21,7 @@
       style="position: relative; height: 40vh"
     />
     <v-combobox
+      background-color="#b0c4de"
       v-model="selectYear"
       :items="years"
       label="年度"
@@ -40,8 +41,8 @@ export default {
   },
   data() {
     return {
-      selectYear: ["2021"],
-      years: ["2023", "2022", "2021"],
+      selectYear: this.$store.state.selectYear,
+      years: ["2022", "2021", "2020"],
       selectProduct: this.$store.state.selectProduct,
       products: [""],
       selectItem: this.$store.state.selectItem,

@@ -89,10 +89,7 @@ export default {
           field: "date",
           type: "date",
           dateInputFormat: "yyyy/MM/dd",
-          dateOutputFormat: "yyyy-MM-dd ",
-          filterOptions: {
-            enabled: true, // enable filter for this column
-          },
+          dateOutputFormat: "yyyy/MM/dd ",
         },
         {
           label: "商品ID",
@@ -150,14 +147,7 @@ export default {
           field: "abandonmentRate",
         },
       ],
-      rows: [
-        //{ id:0, name:"John", age: 20, createdAt: '2011-10-31',score: 0.03343 },
-        // { id:2, name:"Jane", age: 24, createdAt: '2011-10-31', score: 0.03343 },
-        // { id:3, name:"Susan", age: 16, createdAt: '2011-10-30', score: 0.03343 },
-        // { id:4, name:"Chris", age: 55, createdAt: '2011-10-11', score: 0.03343 },
-        // { id:5, name:"Dan", age: 40, createdAt: '2011-10-21', score: 0.03343 },
-        // { id:6, name:"John", age: 20, createdAt: '2011-10-31', score: 0.03343 },
-      ],
+      rows: [],
     };
   },
   methods: {
@@ -200,9 +190,21 @@ export default {
     },
     onCellClick(params) {
       this.$store.state.selectProduct = params.row.productId;
-      this.$store.state.selectItem = params.column.label;
-      this.$store.state.selectProductName = this.$store.state.rows.find(element => element.productId == this.$store.state.selectProduct).name;
-      this.$router.push('/Chart');
+      if (
+        params.column.label === "年月" ||
+        params.column.label === "商品ID" ||
+        params.column.label === "商品名" ||
+        params.column.label === "商品管理番号" ||
+        params.column.label === "商品管理名"
+      ) {
+        this.$store.state.selectItem = "売上";
+      } else {
+        this.$store.state.selectItem = params.column.label;
+      }
+      this.$store.state.selectProductName = this.$store.state.rows.find(
+        (element) => element.productId == this.$store.state.selectProduct
+      ).name;
+      this.$router.push("/Chart");
     },
   },
 };
