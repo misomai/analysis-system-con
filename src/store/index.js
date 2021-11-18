@@ -22,17 +22,26 @@ export default new Vuex.Store({
         return self.indexOf(x) === i && i !== self.lastIndexOf(x);
       }).sort();
     },
-    setGraphData: function(){
-
-    },
   },
   actions: {
   },
   modules: {
   },
   getters: {
+    getProducts: state => {
+      return state.products
+    },
     getRows: state => {
       return state.rows;
+    },
+    getSelectYear: state => {
+      return state.selectYear
+    },
+    getSelectProduct: state => {
+      return state.selectProduct
+    },
+    getSelectItem: state => {
+      return state.selectItem
     },
     getGraphData: state => {
       var graphDataDic = {};
