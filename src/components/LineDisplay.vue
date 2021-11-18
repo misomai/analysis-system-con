@@ -76,6 +76,7 @@ export default {
       selectProduct: this.$store.getters.getSelectProduct,
       products: this.$store.getters.getProducts,
       selectItem: this.$store.getters.getSelectItem,
+      selectProductName: "",
       items: [
         "売上",
         "売上件数",
@@ -118,10 +119,28 @@ export default {
     selectYear: function (val, oldVal) {
       console.log(val + oldVal);
       this.$store.state.selectYear = val;
+      var changedData = [];
+      
+      this.datasets.forEach((element) => {
+        this.selectProduct = element.label;
+        changedData.push({
+          label: this.selectProduct,
+          data: this.getGraphData(),
+          pointBackgroundColor: "white", // 点の塗りつぶしの色
+          pointBorderColor: "#249EBF", // 点の境界線の色
+          borderColor: element.borderColor,
+          fill: false,
+          type: "line",
+          lineTension: 0.1,
+        });
+      });
+      this.datasets = changedData;
+      this.$refs.LineChartChild.reRenderChart();
     },
     selectItem: function (val, oldVal) {
       console.log(val + oldVal);
       this.$store.state.selectItem = val;
+      // Todo 項目が替わるとグラフリセット
     },
   },
   computed: {
@@ -158,7 +177,7 @@ export default {
         type: "line",
         lineTension: 0.1,
       });
-      this.$set(this.chartdata, "datasets", this.chartdata.datasets);
+      //this.$set(this.chartdata, "datasets", this.chartdata.datasets);
       //this.loaded = true;
       this.$refs.LineChartChild.reRenderChart();
     },
@@ -555,6 +574,8 @@ export default {
           }
         }
       });
+      var hage = graphDataDic[this.selectYear];
+      console.log(hage);
       return graphDataDic[this.selectYear];
     },
   },
