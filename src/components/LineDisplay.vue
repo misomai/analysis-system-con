@@ -40,6 +40,7 @@
     <v-row>
       <v-col cols="4">
         <v-combobox
+          background-color="#2ECC71"
           v-model="selectItem"
           :items="items"
           label="項目"
@@ -49,7 +50,7 @@
       </v-col>
       <v-col cols="4">
         <v-combobox
-          background-color="#b0c4de"
+          background-color="#90CAF9"
           v-model="selectYear"
           :items="years"
           label="年度"
@@ -111,16 +112,13 @@ export default {
     selectProduct: function (val, oldVal) {
       console.log(val + oldVal);
       // this.$store.state.selectProduct = val;
-      var importedData = this.$store.getters.getRows;
-      this.selectProductName = importedData.find(
-        (element) => element.productId == val
-      ).name;
+      this.selectProductName = this.findProductName(val);
     },
     selectYear: function (val, oldVal) {
       console.log(val + oldVal);
       this.$store.state.selectYear = val;
       var changedData = [];
-      
+
       this.datasets.forEach((element) => {
         this.selectProduct = element.label;
         changedData.push({
@@ -578,6 +576,11 @@ export default {
       console.log(hage);
       return graphDataDic[this.selectYear];
     },
+    findProductName: function (productId) {
+      var importedData = this.$store.getters.getRows;
+      return importedData.find((element) => element.productId == productId)
+        .name;
+    },
   },
   mounted() {
     this.loaded = true;
@@ -591,6 +594,7 @@ export default {
       type: "line",
       lineTension: 0.1,
     });
+    this.selectProductName = this.findProductName(this.selectProduct);
   },
 };
 </script>
