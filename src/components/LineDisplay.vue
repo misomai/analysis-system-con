@@ -138,6 +138,23 @@ export default {
     selectItem: function (val, oldVal) {
       console.log(val + oldVal);
       this.$store.state.selectItem = val;
+      var changedData = [];
+
+      this.datasets.forEach((element) => {
+        this.selectProduct = element.label;
+        changedData.push({
+          label: this.selectProduct,
+          data: this.getGraphData(),
+          pointBackgroundColor: "white", // 点の塗りつぶしの色
+          pointBorderColor: "#249EBF", // 点の境界線の色
+          borderColor: element.borderColor,
+          fill: false,
+          type: "line",
+          lineTension: 0.1,
+        });
+      });
+      this.datasets = changedData;
+      this.$refs.LineChartChild.reRenderChart();
       // Todo 項目が替わるとグラフリセット
     },
   },
